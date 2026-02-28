@@ -203,8 +203,7 @@ class DSEParser:
             if raw_pixels and palette_bytes:
                 rgba_data = rapi.imageDecodeRawPal(raw_pixels, palette_bytes, texture_image_width, texture_image_height, bpp, "r5g5b5a1")
                 tex = NoeTexture(texture_name, texture_image_width, texture_image_height, rgba_data, noesis.NOESISTEX_RGBA32)
-                tex.setFlags(noesis.NTEXFLAG_WRAP_MIRROR_REPEAT)
-                tex.setFlags(noesis.NTEXFLAG_FILTER_NEAREST)
+                tex.setFlags(noesis.NTEXFLAG_FILTER_NEAREST | noesis.NTEXFLAG_WRAP_MIRROR_REPEAT)
                 self.texList.append(tex)
 
     def parse_materials(self):
@@ -427,4 +426,5 @@ def dseLoadModel(data, mdlList):
         mdl.setModelMaterials(matData)
         mdlList.append(mdl)
     
+
     return 1
